@@ -1,0 +1,38 @@
+CC = gcc  
+AR = ar  
+BIN = test.out
+
+BUILD_DIR = build
+SUB_LIB = lib
+
+SRCS = $(wildcard *.c)  
+OBJS = $(patsubst %.c, $(BUILD_DIR)/%.o, $(SRCS))  
+DEPS = $(patsubst %.o, %.d, $(OBJS))
+
+.PHONY: all
+all: $(SUB_LIB) $(OBJS)  
+	$(CC) -Ilib -o $(BIN) $(OBJS) $(SUB_LIB)/build/*.a
+
+-include $(DEPS)
+
+$(BUILD_DIR)/%.o: %.c
+	$(CC) -Ilib -fPIC -MMD -c -o $@ $<
+
+$(OBJS):  $(BUILD_DIR)
+
+.PHONY: $(BUILD_DIR)
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+.PHONY: $(SUB_LIB)
+$(SUB_LIB):
+	@echo $(SRCS)
+	@echo $(OBJS)
+	@echo $(DEPS)
+	make CC=$(CC) AR=$(AR) -C $(SUB_LIB)
+
+.PHONY: clean
+clean:  
+	rm -fr *.out
+	rm -fr build
+	make -C $(SUB_LIB) clean

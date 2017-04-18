@@ -1,0 +1,7 @@
+VPATH = ../include
+all:main.o a.o
+	gcc -o main main.o a.o
+main.o:main.c a.h
+	gcc -o main.o -c main.c -I../include
+a.o:a.c a.h
+	gcc -o a.o -c a.c

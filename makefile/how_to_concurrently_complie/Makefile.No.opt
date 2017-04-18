@@ -1,0 +1,9 @@
+all : A
+	cd B && $(MAKE)
+	cd C && $(MAKE)
+	@echo "Complete"
+
+A:
+	cd A && $(MAKE)
+
+.PHONY: A all
