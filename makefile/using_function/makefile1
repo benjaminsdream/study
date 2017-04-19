@@ -1,0 +1,6 @@
+define y
+@echo calling y
+endef
+
+all:
+	$(y)
