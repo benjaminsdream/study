@@ -1,0 +1,6 @@
+define ERROR
+$(error err is $(ERROR))
+endef
+
+all:
+	@echo i am return 2 , defined ERROR in cmd

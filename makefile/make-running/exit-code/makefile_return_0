@@ -1,0 +1,2 @@
+all:
+	@echo everthing is ok, return 0

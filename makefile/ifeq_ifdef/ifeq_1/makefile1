@@ -1,0 +1,12 @@
+libs_for_gcc = -lgnu
+normal_libs = -lnormal
+
+ifeq ($(CC),cc)
+libs=$(libs_for_gcc)
+else
+libs=$(normal_libs)
+endif
+
+all: 
+	@echo $(CC)
+	@echo $(libs)

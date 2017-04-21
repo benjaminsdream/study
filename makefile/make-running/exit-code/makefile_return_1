@@ -1,0 +1,2 @@
+all:
+	@echo i am return 1 using make -q
