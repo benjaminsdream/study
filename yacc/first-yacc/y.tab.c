@@ -372,16 +372,20 @@ yyreduce:
 case 5:
 #line 33 "temp-controller.y"
 	{
-                    printf("\tHeat turned on or off\n");
+					if(yystack.l_mark[0])
+                    	printf("\tHeat turned on \n");
+					else
+                    	printf("\tHeat turned off\n");
+			
                 }
 break;
 case 6:
-#line 39 "temp-controller.y"
+#line 43 "temp-controller.y"
 	{
-                    printf("\tTemperature set\n");
+                    printf("\tTemperature set to %d\n",yystack.l_mark[0]);
                 }
 break;
-#line 385 "y.tab.c"
+#line 389 "y.tab.c"
     }
     yystack.s_mark -= yym;
     yystate = *yystack.s_mark;
